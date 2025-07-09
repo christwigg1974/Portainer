@@ -6,7 +6,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.christwigg.org.uk #optional
+      - JELLYFIN_PublishedServerUrl=https://{YourDomain} #optional
     volumes:
       - /docker/jellyfin/library:/config
     ports:
