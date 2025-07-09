@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+ sonarr:
+    image: ghcr.io/linuxserver/sonarr:latest
+    container_name: SONARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8989/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+
+      - /docker/sonarr/config:/config:rw 
+    environment:
+      TZ: Europe/Bucharest
+      PGID: 0
+      PUID: 0
+    ports:
+      - 8989:8989
