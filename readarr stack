@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+ readarr:
+    image: ghcr.io/linuxserver/readarr:nightly
+    container_name: READARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8787/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /docker/readarr/books:/books:rw #If you want, you can change the following line /volume1/docker/readarr/books with the path Location of your own Books library.
+      - /docker/readarr/downloads:/downloads:rw #If you want, you can change the following line /volume1/docker/readarr/downloads with the path Location of your Download folder.
+      - /docker/readarr/config:/config:rw 
+    environment:
+      TZ: Europe/Bucharest
+      PGID: 0
+      PUID: 0
+    ports:
+      - 8787:8787
