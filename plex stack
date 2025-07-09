@@ -1,0 +1,19 @@
+services:
+  plex:
+    image: ghcr.io/linuxserver/plex:latest
+    container_name: Plex
+    hostname: plex
+    network_mode: host
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:32400/web
+    volumes:
+      - /docker/plex:/config:rw
+    environment:
+      TZ: Europe/Bucharest
+      PUID: 0
+      PGID: 0
+      VERSION: public
+      PLEX_CLAIM: YourPLEXClaimCode # STEP 3
+    restart: on-failure:5
