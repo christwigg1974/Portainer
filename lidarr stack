@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+ lidarr:
+    image: ghcr.io/linuxserver/lidarr:latest
+    container_name: LIDARR-SYNOLOGY
+    healthcheck:
+     test: curl -f http://localhost:8686/ || exit 1
+    restart: on-failure:5
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /docker/lidarr/music:/music:rw #If you want, you can change the following line /volume1/docker/lidarr/music with the path Location of your own Music library.
+      - /docker/lidarr/downloads:/downloads:rw #If you want, you can change the following line /volume1/docker/lidarr/downloads with the path Location of your Download folder.
+      - /docker/lidarr/config:/config:rw 
+    environment:
+      TZ: Europe/Bucharest
+      PGID: 0
+      PUID: 0
+    ports:
+      - 8686:8686
