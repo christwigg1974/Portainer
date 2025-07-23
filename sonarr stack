@@ -10,10 +10,17 @@ services:
       - no-new-privileges:true
     volumes:
 
-      - /docker/sonarr/config:/config:rw 
+      - /docker/sonarr/config:/config:rw
+      - nas:/TV
     environment:
       TZ: Europe/Bucharest
       PGID: 0
       PUID: 0
     ports:
       - 8989:8989
+volumes: 
+  nas:
+    driver_opts:
+      type: cifs 
+      o: username=macmini,password=yourpassword,uid=1021,gid=100,vers=3.0
+      device: //192.168.0.7/media
