@@ -6,6 +6,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Etc/UTC
+# Passwords - You may have to put a space after the equals on both Key & Password (= yourpassword) if it doesnt fire up. But delete the volume and rebuild.
       - SETTINGS_ENCRYPTION_KEY=yourpassword
       - CLI_ARGS= --unencrypted-database
       - DUPLICATI__WEBSERVICE_PASSWORD=yourpassword
