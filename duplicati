@@ -6,9 +6,9 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Etc/UTC
-      - SETTINGS_ENCRYPTION_KEY= yourpassword
+      - SETTINGS_ENCRYPTION_KEY=yourpassword
       - CLI_ARGS= --unencrypted-database
-      - DUPLICATI__WEBSERVICE_PASSWORD= yourpassword
+      - DUPLICATI__WEBSERVICE_PASSWORD=yourpassword
 
     volumes:
       - /docker/duplicati/config:/config
