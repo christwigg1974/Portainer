@@ -1,0 +1,27 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Etc/UTC
+      - SETTINGS_ENCRYPTION_KEY= yourpassword
+      - CLI_ARGS= --unencrypted-database
+      - DUPLICATI__WEBSERVICE_PASSWORD= yourpassword
+
+    volumes:
+      - /docker/duplicati/config:/config
+      - /docker/duplicati/backups:/backups
+      - /:/source
+      - nas:/backup
+    ports:
+      - 8200:8200
+    restart: unless-stopped
+volumes:
+    nas:
+      driver: local
+      driver_opts:
+        type: cifs
+        device: \\192.168.100.1\Media\Backup
+        o: addr=192.168.100.1,username=youname,password=yourpassword,vers=3.0
